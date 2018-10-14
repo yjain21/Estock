@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="Estock2">
+    <property environment="env"/>
+    <property name="ECLIPSE_HOME" value="../../eclipse/java-oxygen/eclipse/"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.8"/>
+    <property name="source" value="1.8"/>
+    <path id="Estock2.classpath">
+        <pathelement location="bin"/>
+        <pathelement location="../../.p2/pool/plugins/org.eclipse.osgi_3.12.50.v20170928-1321.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.eclipse.core.commands_3.9.0.v20170530-1048.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.eclipse.equinox.common_3.9.0.v20170207-1454.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.eclipse.equinox.registry_3.7.0.v20170222-1344.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.eclipse.core.runtime_3.13.0.v20170207-1030.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.eclipse.text_3.6.100.v20170203-0814.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.eclipse.swt.win32.win32.x86_64_3.106.1.v20170926-0519.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.eclipse.jface_3.13.1.v20170810-0135.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.eclipse.jface.text_3.12.0.v20170523-1043.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.eclipse.ui.workbench_3.110.1.v20170704-1208.jar"/>
+        <pathelement location="../../.p2/pool/plugins/com.ibm.icu_58.2.0.v20170418-1837.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.eclipse.ui.forms_3.7.101.v20170815-1446.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.eclipse.core.databinding_1.6.100.v20170515-1119.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.eclipse.core.databinding.beans_1.4.0.v20170210-0856.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.eclipse.core.databinding.observable_1.6.100.v20170515-1119.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.eclipse.core.databinding.property_1.6.100.v20170515-1119.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.eclipse.jface.databinding_1.8.100.v20170503-1507.jar"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="pictures">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <src path="pictures"/>
+            <classpath refid="Estock2.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+    <target name="Estock (1)">
+        <java classname="Estock" failonerror="true" fork="yes">
+            <classpath refid="Estock2.classpath"/>
+        </java>
+    </target>
+</project>
